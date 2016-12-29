@@ -26,7 +26,8 @@ public struct RedundantOptionalInitializationRule: ASTRule, CorrectableRule, Con
             "func foo(bar: Int? = 0) { }\n",
             "var myVar: Optional<Int>\n",
             "let myVar: Optional<Int> = nil\n",
-            "var myVar: Optional<Int> = 0\n"
+            "var myVar: Optional<Int> = 0\n",
+            "if myVar == nil {"
         ],
         triggeringExamples: [
             "var myVar: Int?↓ = nil\n",
@@ -42,7 +43,7 @@ public struct RedundantOptionalInitializationRule: ASTRule, CorrectableRule, Con
         ]
     )
 
-    private let pattern = "\\s*=\\s*nil\\b"
+    private let pattern = "[^=]=\\s*nil\\b"
 
     public func validateFile(_ file: File, kind: SwiftDeclarationKind,
                              dictionary: [String : SourceKitRepresentable]) -> [StyleViolation] {
