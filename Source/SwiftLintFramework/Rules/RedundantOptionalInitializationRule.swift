@@ -27,7 +27,7 @@ public struct RedundantOptionalInitializationRule: ASTRule, CorrectableRule, Con
             "var myVar: Optional<Int>\n",
             "let myVar: Optional<Int> = nil\n",
             "var myVar: Optional<Int> = 0\n",
-            "if myVar == nil {"
+            "if myVar == nil {\n"
         ],
         triggeringExamples: [
             "var myVar: Int?↓ = nil\n",
